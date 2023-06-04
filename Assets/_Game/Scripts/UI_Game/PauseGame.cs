@@ -16,4 +16,11 @@ public class PauseGame : UICanvas
         UIManager.Ins.OpenUI(UIID.Gameplay);
         GameManager.Ins.ChangeState(GameState.Gameplay);
     }
+
+    public void ButtonMainMenu()
+    {
+        UIManager.Ins.CloseAll();
+        LevelManager.Ins.ReloadGame();
+        UIManager.Ins.OpenUI(UIID.MainMenu);
+    }
 }
