@@ -272,7 +272,7 @@ public class PlayerController : Character
     {
         base.OnDeadEnter();
         rankPlayer = LevelManager.Ins.maxBot;
-        UIManager.Ins.OpenUI(UIID.UIRevive);
+        Invoke("OpenUIWhenDead", 1.5f);
     }
 
 
@@ -308,4 +308,10 @@ public class PlayerController : Character
             CameraFollow.Ins.SetUpWhenCollectGift();
         }    
     }
+
+    private void OpenUIWhenDead()
+    {
+        UIManager.Ins.OpenUI(UIID.UIRevive);
+    }
+
 }
