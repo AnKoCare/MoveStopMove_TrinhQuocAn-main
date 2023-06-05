@@ -152,12 +152,13 @@ public class LevelManager : Singleton<LevelManager>
 
     private void SpawnGiftRandom()
     {
+        if(!GameManager.Ins.IsState(GameState.Gameplay)) return;
         Gift gift = SimplePool.Spawn<Gift>((PoolType)Random.Range(13,16));
 
         float x = Random.Range(xMin, xMax);
         float z = Random.Range(zMin, zMax);
 
-        Vector3 posBot = Vector3.up * 30f + Vector3.forward * z + Vector3.right * x;
+        Vector3 posBot = Vector3.up * 1.58f + Vector3.forward * z + Vector3.right * x;
         Vector3 navPos = Vector3.zero;
         bool checkPos = false; 
 
@@ -185,7 +186,7 @@ public class LevelManager : Singleton<LevelManager>
             }   
         }
 
-        gift.TF.position = navPos;
+        gift.TF.position = Vector3.right * navPos.x + Vector3.up * 30f + Vector3.forward * navPos.z;
     }
 
     public void ReloadGame()
@@ -200,6 +201,17 @@ public class LevelManager : Singleton<LevelManager>
         Destroy(currentLevel);
         OnInit();
         SpawnBot(currentBot, player.sizeCharacter, player.sizeRing, player.LevelCharacter, player.moveSpeed);
+    }
+
+    public void RevivePlayer()
+    {
+        if(player.coin < 150) return;
+        else
+        {
+            player.BuyItemRevive(150);
+        }
+        player.OnInitRevive();
+        player.gameObject.SetActive(true);
     }
 
 }

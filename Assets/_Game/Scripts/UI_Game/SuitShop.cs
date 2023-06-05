@@ -67,7 +67,6 @@ public class SuitShop : UICanvas
     public override void SetDeActive()
     {
         RemoveItemSuit();
-        
     }
 
     public void ButtonSelectDevil()

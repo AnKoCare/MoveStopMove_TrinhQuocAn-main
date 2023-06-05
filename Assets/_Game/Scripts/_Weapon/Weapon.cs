@@ -12,7 +12,7 @@ public class Weapon : GameUnit
     [SerializeField] private Transform weaponTransform;
 
     private Vector3 targetScale = Vector3.one * 3.5f; // Scale cuối cùng
-    private float scaleIncrement = 0.2f; // Tốc độ tăng scale
+    private float scaleIncrement = 0.1f; // Tốc độ tăng scale
     private float maxScale = 2f; // Giới hạn scale tối đa
     private bool canScale = false;
 
@@ -29,16 +29,7 @@ public class Weapon : GameUnit
             // Giới hạn scale tối đa
             newScale = Vector3.Min(newScale, targetScale * maxScale);
 
-            // Áp dụng scale lên đối tượng
-            //TF.localScale = newScale;
             TF.localScale = Vector3.Lerp(newScale, TF.localScale, 0.1f);
-
-            // Kiểm tra nếu đã đạt đến scale cuối cùng
-            if (newScale.x >= targetScale.x && newScale.y >= targetScale.y && newScale.z >= targetScale.z)
-            {
-                // Đạt đến scale cuối cùng, dừng tăng scale
-                enabled = false;
-            }
         }
         if(weaponData.GetWeapon(Owner.weaponType).rotate)
         {
@@ -73,6 +64,10 @@ public class Weapon : GameUnit
         if(canScale)
         {
             Owner.attackRange.transform.localScale = Owner.sizeRingBeforeCollectGift;
+            if(Owner == LevelManager.Ins.player)
+            {
+                CameraFollow.Ins.offset = LevelManager.Ins.player.offsetCameraBeforeCollectGift;
+            }
         }
         rb.velocity = Vector3.zero;
         SimplePool.Despawn(this);
@@ -118,7 +113,7 @@ public class Weapon : GameUnit
 
         if(other.CompareTag(Constant.TAG_OBSTACLE))
         {
-            rb.velocity = Vector3.zero;
+            OnDespawn();
         }
     }
 

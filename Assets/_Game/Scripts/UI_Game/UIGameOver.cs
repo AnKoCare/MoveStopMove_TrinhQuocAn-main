@@ -23,4 +23,9 @@ public class UIGameOver : UICanvas
         UIManager.Ins.OpenUI(UIID.MainMenu);
         LevelManager.Ins.ReloadGame();
     }
+
+    public override void SetDeActive()
+    {
+        
+    }
 }

@@ -9,7 +9,7 @@ public class PlayerController : Character
     [SerializeField] private float rotateSpeed;
     [SerializeField] private Rigidbody rigibody;
     [SerializeField] private bool EnableMove = true;
-    [SerializeField] private Vector3 offsetCameraBeforeCollectGift;
+    public Vector3 offsetCameraBeforeCollectGift;
     public bool AttackEnd = true;
 
     public int numberKillBot = 0;
@@ -140,6 +140,28 @@ public class PlayerController : Character
         AttackEnd = true;
     }
 
+    public void OnInitRevive()
+    {
+        currentAnimName = "Idle";
+        isIdle = false;
+        isPatrol = false;
+        isAttack = false;
+        isDead = false;
+        isDance = false;
+        isThrow = false;
+        isUlti = false;
+        timerAttack = 0f;
+        characterList.Clear();
+        SetUpWeaponAndHairIndicator();
+        SetUpPantIndicator();
+        SetUpSupportItemIndicator();
+        SetMissionWayPoint();
+        SetColorMissionWayPoint();
+        boxCollider.enabled = true;
+        EnableMove = true;
+        AttackEnd = true;
+    }
+
     //IDLE
     public override void OnIdleEnter()
     {
@@ -245,7 +267,7 @@ public class PlayerController : Character
             isThrow = true;
             ThrowWeapon();
             isUlti = false;
-            CameraFollow.Ins.offset = offsetCameraBeforeCollectGift;
+            
             CountThrow++;
             isThrow = false;
         }
@@ -272,7 +294,7 @@ public class PlayerController : Character
     {
         base.OnDeadEnter();
         rankPlayer = LevelManager.Ins.maxBot;
-        Invoke("OpenUIWhenDead", 1.5f);
+        Invoke("OpenUIWhenDead", 2f);
     }
 
 
@@ -283,6 +305,12 @@ public class PlayerController : Character
     }
 
     public void BuyItem(int price)
+    {
+        coin -= price;
+        PlayerPrefs.SetInt(goldKey, coin);
+    }
+
+    public void BuyItemRevive(int price)
     {
         coin -= price;
         PlayerPrefs.SetInt(goldKey, coin);
@@ -303,7 +331,7 @@ public class PlayerController : Character
             if(isUlti) return;
             isUlti = true;
             sizeRingBeforeCollectGift = attackRange.transform.localScale;
-            SetSizeRingWhenCollectGift(1.5f,sizeRingBeforeCollectGift);
+            SetSizeRingWhenCollectGift(1.8f,sizeRingBeforeCollectGift);
             offsetCameraBeforeCollectGift = CameraFollow.Ins.offset;
             CameraFollow.Ins.SetUpWhenCollectGift();
         }    

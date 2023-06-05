@@ -9,4 +9,9 @@ public class CvVictory : UICanvas
         base.Setup();
         GameManager.Ins.ChangeState(GameState.Pause);
     }
+
+    public override void SetDeActive()
+    {
+
+    }
 }

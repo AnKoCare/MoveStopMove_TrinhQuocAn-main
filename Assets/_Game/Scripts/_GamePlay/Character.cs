@@ -230,6 +230,7 @@ public class Character : GameUnit
         Weapon weapon = SimplePool.Spawn<Weapon>((PoolType)((int)weaponType));
         weapon.OnInit(this);
         weapon.AddForce();
+        SoundController.Ins.GetthrowWeaponAudio().Play();
     }
 
 
@@ -316,6 +317,7 @@ public class Character : GameUnit
         SimplePool.Despawn(missionWaypoint);
         SimplePool.Despawn(missionWayPoint2);
         onDespawnEvent?.Invoke();
+        SoundController.Ins.GetdeadCharacterAudio().Play();
         ChangeAnim("Dead");
         Invoke("DespawnObj", 2f);
     }

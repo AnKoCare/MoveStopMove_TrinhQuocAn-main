@@ -57,7 +57,7 @@ public class Bot : Character
         if(GameManager.Ins.IsState(GameState.Gameplay) &&  character.currentState != null)
         {
             character.currentState.OnExecute(this);
-        }  
+        } 
     }
 
     public override void OnInit()
@@ -79,7 +79,7 @@ public class Bot : Character
         base.OnIdleExecute();
         if(UnityEngine.Random.Range(0f, 1f) < 0.7f && characterList.Count > 0)
         {
-            randomTimeAttack = UnityEngine.Random.Range(0.5f, 1.5f);
+            randomTimeAttack = UnityEngine.Random.Range(0.5f, 1f);
             if(!isUlti) ChangeState(new AttackState());
             else ChangeState(new Ulti());
         }
@@ -267,7 +267,7 @@ public class Bot : Character
             if(isUlti) return;
             isUlti = true;
             sizeRingBeforeCollectGift = attackRange.transform.localScale;
-            SetSizeRingWhenCollectGift(1.5f,sizeRingBeforeCollectGift);
+            SetSizeRingWhenCollectGift(2f,sizeRingBeforeCollectGift);
             
         }    
     }

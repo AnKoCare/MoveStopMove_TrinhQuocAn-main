@@ -9,6 +9,8 @@ public class MainMenu : UICanvas
     public TMP_InputField InputField;
     public TextMeshProUGUI InputName;
     public string PlayerName;
+    public Canvas buttonRemoveSound;
+    public Canvas buttonOpenSound;
 
     public override void Setup()
     {
@@ -17,6 +19,14 @@ public class MainMenu : UICanvas
         CameraFollow.Ins.SetupMainMenu();
         LevelManager.Ins.player.ChangeState(new IdleState());
         InputField.onEndEdit.AddListener(SetName);
+        if(!buttonOpenSound.gameObject.activeSelf && buttonRemoveSound.gameObject.activeSelf)
+        {
+            SoundController.Ins.GetbackGroundAudio().Play();
+        }
+        else
+        {
+            SoundController.Ins.GetbackGroundAudio().Pause();
+        }
     }
 
     public void SetName(string text)
@@ -48,5 +58,19 @@ public class MainMenu : UICanvas
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.Gameplay);
         GameManager.Ins.ChangeState(GameState.Gameplay);
+    }
+
+    public void ButtonRemoveSound()
+    {
+        SoundController.Ins.GetbackGroundAudio().Pause();
+        buttonRemoveSound.gameObject.SetActive(false);
+        buttonOpenSound.gameObject.SetActive(true);
+    }
+
+    public void ButtonOpenSound()
+    {
+        SoundController.Ins.GetbackGroundAudio().Play();
+        buttonRemoveSound.gameObject.SetActive(true);
+        buttonOpenSound.gameObject.SetActive(false);
     }
 }
