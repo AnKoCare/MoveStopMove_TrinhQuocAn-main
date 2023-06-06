@@ -53,6 +53,7 @@ MonoBehaviour:
   rb: {fileID: 8816498979668780276}
   rotationSpeed: 1500
   weaponTransform: {fileID: 633280670030550600}
+  boxWeapon: {fileID: 1496639886216490449}
 --- !u!65 &1496639886216490449
 BoxCollider:
   m_ObjectHideFlags: 0

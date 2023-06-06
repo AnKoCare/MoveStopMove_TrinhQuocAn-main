@@ -59,18 +59,21 @@ public class WeaponShop : UICanvas
 
     public void ButtonEnterLeft()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(currentIndex == 0) return;
         currentIndex --;
     }
 
     public void ButtonEnterRight()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(currentIndex == 8) return;
         currentIndex ++;
     }
 
     public void ButtonExitShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         LevelManager.Ins.player.RemoveWeapon();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.MainMenu);
@@ -78,6 +81,7 @@ public class WeaponShop : UICanvas
 
     public void ButtonSelection()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         LevelManager.Ins.player.RemoveWeapon();
         LevelManager.Ins.player.weaponType = (WeaponType)currentIndex;
         LevelManager.Ins.player.SetUpWeaponAndHairIndicator();
@@ -95,6 +99,7 @@ public class WeaponShop : UICanvas
 
     public void ButtonBuyWeapon()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.coin > weaponData.GetWeapon((WeaponType)currentIndex).Prices)
         {
             weaponData.GetWeapon((WeaponType)currentIndex).IsUnlocked = true;

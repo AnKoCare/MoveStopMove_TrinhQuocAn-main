@@ -19,6 +19,7 @@ public class UIGameOver : UICanvas
 
     public void ButtonContinue()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.MainMenu);
         LevelManager.Ins.ReloadGame();
@@ -26,6 +27,6 @@ public class UIGameOver : UICanvas
 
     public override void SetDeActive()
     {
-        
+
     }
 }

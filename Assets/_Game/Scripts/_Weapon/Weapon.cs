@@ -10,6 +10,7 @@ public class Weapon : GameUnit
     [SerializeField] Rigidbody rb;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform weaponTransform;
+    [SerializeField] private BoxCollider boxWeapon;
 
     private Vector3 targetScale = Vector3.one * 3.5f; // Scale cuối cùng
     private float scaleIncrement = 0.1f; // Tốc độ tăng scale
@@ -21,6 +22,10 @@ public class Weapon : GameUnit
     private void FixedUpdate() 
     {
         if(Owner == null) return;
+        if(Owner == LevelManager.Ins.player && Owner.isDead)
+        {
+            OnDespawn();
+        }
         if(canScale)
         {
             // Tăng scale của đối tượng
@@ -54,6 +59,7 @@ public class Weapon : GameUnit
         Owner = character;
         canScale = false;
         if(Owner.isUlti) canScale = true;
+        boxWeapon.enabled = true;
         TF.position = Owner.ThrowPoint.transform.position;
         TF.rotation = Owner.ThrowPoint.transform.rotation;
         SizeUp(Owner.sizeCharacter);
@@ -106,7 +112,7 @@ public class Weapon : GameUnit
 
             Owner.characterList.Remove(character);
             Owner.isAttack = false;
-            Instantiate(Hit_VFX, TF.position + Vector3.up * 2f, Quaternion.identity);
+            SpawnVFX();
             character.OnHit();
             OnDespawn();
         }
@@ -140,6 +146,11 @@ public class Weapon : GameUnit
 
     public void AddForce()
     {
-        rb.AddForce(TF.forward * weaponData.GetWeapon(Owner.weaponType).Speed, ForceMode.Impulse);
+        rb.AddForce(TF.forward * (weaponData.GetWeapon(Owner.weaponType).Speed + Owner.LevelCharacter), ForceMode.Impulse);
+    }
+
+    private void SpawnVFX()
+    {
+        HitVFX hit_VFX = SimplePool.Spawn<HitVFX>(PoolType.Hit_VFX, TF.position + Vector3.up * 2f, Quaternion.identity);
     }
 }

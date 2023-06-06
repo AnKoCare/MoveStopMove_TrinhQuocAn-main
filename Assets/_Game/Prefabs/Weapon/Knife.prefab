@@ -52,7 +52,8 @@ MonoBehaviour:
   Hit_VFX: {fileID: 893158140678593356, guid: 71e02098ec35943dc8b26f6eb682691a, type: 3}
   rb: {fileID: -7097531342034898776}
   rotationSpeed: 10
-  weaponTransform: {fileID: 0}
+  weaponTransform: {fileID: 6938415946718035529}
+  boxWeapon: {fileID: 597111152887051992}
 --- !u!54 &-7097531342034898776
 Rigidbody:
   m_ObjectHideFlags: 0

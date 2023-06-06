@@ -29,8 +29,10 @@ public class LevelManager : Singleton<LevelManager>
     public GameObject MissionWayPoint1Hold;
     public GameObject MissionWayPoint2Hold;
 
-    private float minTime = 1f; // Thời gian tối thiểu (giây)
-    private float maxTime = 3f; // Thời gian tối đa (giây)
+    private float minTime = 5f; // Thời gian tối thiểu (giây)
+    private float maxTime = 20f; // Thời gian tối đa (giây)
+    private bool isBoss = false;
+    private bool endGame = false;
 
     private void Update() 
     {
@@ -38,6 +40,17 @@ public class LevelManager : Singleton<LevelManager>
         {
             SpawnBot(10, player.sizeCharacter, player.sizeRing, player.LevelCharacter, player.moveSpeed);
             currentBot = 20;
+        }
+        if(maxBot == 0 && !player.isDead && !isBoss)
+        {
+            SpawnBoss();
+            isBoss = true;
+        }
+        if(maxBot == 0 && !player.isDead && isBoss && !endGame) 
+        {
+            UIManager.Ins.CloseAll();
+            UIManager.Ins.OpenUI(UIID.UIWinGame);
+            endGame = true;
         }
     }
 
@@ -132,6 +145,60 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    public void SpawnBoss()
+    {
+        for(int i = 0; i < 1; i ++)
+        {
+            float x = Random.Range(xMin, xMax);
+            float z = Random.Range(zMin, zMax);
+
+            Vector3 posBot = Vector3.up * 1.58f + Vector3.forward * z + Vector3.right * x;
+            Vector3 navPos = Vector3.zero;
+            bool checkPos = false; 
+
+            while(!checkPos)
+            {
+                if(NavMesh.SamplePosition(posBot, out navHit ,5f, NavMesh.AllAreas))
+                {
+                    navPos = navHit.position;
+                    if(Vector3.Distance(player.TF.position, navPos) > 15f)
+                    {
+                        checkPos = true;
+                    }
+                    else
+                    {
+                        x = Random.Range(xMin, xMax);
+                        z = Random.Range(zMin, zMax);
+                        posBot = Vector3.up * 1.58f + Vector3.forward * z + Vector3.right * x;
+                    }
+                }
+                else
+                {
+                    x = Random.Range(xMin, xMax);
+                    z = Random.Range(zMin, zMax);
+                    posBot = Vector3.up * 1.58f + Vector3.forward * z + Vector3.right * x;
+                }   
+            }
+
+            Bot bots = SimplePool.Spawn<Bot>(PoolType.Bot);
+            if(navPos != Vector3.zero)
+            {
+                bots.transform.position = navPos;
+                bots.navMeshAgent.SetDestination(bots.transform.position);
+            }
+            bots.OnInit();
+            bots.sizeCharacter = 10;
+            bots.sizeRing = 40;
+            bots.LevelCharacter = 50;
+            bots.moveSpeed = 200;
+            bots.SetSizeChar(bots.sizeCharacter);
+            bots.SetSizeRing(bots.sizeRing);
+            bots.navMeshAgent.speed = bots.moveSpeed = 200;
+            maxBot ++;
+            currentBot++;
+        }
+    }
+
     public void SpawnNotice(string killer, string victim)
     {
         UIManager.Ins.GetUI<CvGameplay>(UIID.Gameplay).SpawnNotice(killer,victim);
@@ -201,6 +268,8 @@ public class LevelManager : Singleton<LevelManager>
         Destroy(currentLevel);
         OnInit();
         SpawnBot(currentBot, player.sizeCharacter, player.sizeRing, player.LevelCharacter, player.moveSpeed);
+        endGame = false;
+        isBoss = false;
     }
 
     public void RevivePlayer()

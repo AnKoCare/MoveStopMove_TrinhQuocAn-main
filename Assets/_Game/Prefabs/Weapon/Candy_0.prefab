@@ -53,6 +53,7 @@ MonoBehaviour:
   rb: {fileID: 8556313847589746645}
   rotationSpeed: 0
   weaponTransform: {fileID: 8041524678185465082}
+  boxWeapon: {fileID: 1913070454459831335}
 --- !u!54 &8556313847589746645
 Rigidbody:
   m_ObjectHideFlags: 0

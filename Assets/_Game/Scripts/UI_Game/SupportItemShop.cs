@@ -71,6 +71,7 @@ public class SupportItemShop : UICanvas
 
     public void ButtonSelectNormalShield()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -87,6 +88,7 @@ public class SupportItemShop : UICanvas
 
     public void ButtonSelectCaptainShield()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -103,12 +105,14 @@ public class SupportItemShop : UICanvas
 
     public void ButtonExitShop()
     {   
+        SoundController.Ins.GetbuttonAudio().Play();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.MainMenu);
     }
 
     public void ButtonBuySupportItem()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.coin >= supportItemData.GetSupportItem((SupportsType)currentIndex).Price)
         {
             LevelManager.Ins.player.BuyItem((int)supportItemData.GetSupportItem((SupportsType)currentIndex).Price);
@@ -119,6 +123,7 @@ public class SupportItemShop : UICanvas
 
     public void ButtonSelection()
     {  
+        SoundController.Ins.GetbuttonAudio().Play();
         if(!supportItemData.GetSupportItem((SupportsType)currentIndex).IsEquipped)
         {
             LevelManager.Ins.player.RemoveSupportItem();
@@ -149,6 +154,7 @@ public class SupportItemShop : UICanvas
 
     public void ButtonHatShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemoveSupportItem();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.HatShop);
@@ -156,6 +162,7 @@ public class SupportItemShop : UICanvas
 
     public void ButtonPantShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemoveSupportItem();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.PantShop);
@@ -163,6 +170,7 @@ public class SupportItemShop : UICanvas
 
     public void ButtonSuitShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemoveSupportItem();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.SuitShop);

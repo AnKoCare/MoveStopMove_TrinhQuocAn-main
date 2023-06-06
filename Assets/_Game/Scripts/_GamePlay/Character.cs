@@ -97,6 +97,7 @@ public class Character : GameUnit
 
     public IState<Character> currentState;
     public UnityAction onDespawnEvent;
+    [SerializeField] private AudioClip audioThrowWeapon;
 
     public virtual void Start() 
     {
@@ -166,8 +167,8 @@ public class Character : GameUnit
     {
         this.LevelCharacter ++;
         this.sizeCharacter += 0.2f;
-        this.sizeRing += 0.35f;
-        this.moveSpeed += 0.4f;
+        this.sizeRing += 0.4f;
+        this.moveSpeed += 0.8f;
         SetSizeChar(sizeCharacter);
         SetSizeRing(sizeRing);
     }
@@ -230,7 +231,7 @@ public class Character : GameUnit
         Weapon weapon = SimplePool.Spawn<Weapon>((PoolType)((int)weaponType));
         weapon.OnInit(this);
         weapon.AddForce();
-        SoundController.Ins.GetthrowWeaponAudio().Play();
+        SoundController.Ins.GetthrowWeaponAudio().PlayOneShot(audioThrowWeapon);
     }
 
 
@@ -464,6 +465,7 @@ public class Character : GameUnit
         weapon.transform.SetParent(WeaponHold);
         weapon.transform.localPosition = weaponData.GetWeapon(type).WeaponModel.transform.localPosition;
         weapon.transform.localRotation = weaponData.GetWeapon(type).WeaponModel.transform.localRotation;
+        weapon.transform.localScale = weaponData.GetWeapon(type).WeaponModel.transform.localScale;
     }
 
     public void RemoveWeapon()
@@ -493,6 +495,7 @@ public class Character : GameUnit
         hair.transform.SetParent(Hair);
         hair.transform.localPosition = hairData.GetHair(type).HairItem.transform.localPosition;
         hair.transform.localRotation = hairData.GetHair(type).HairItem.transform.localRotation;
+        hair.transform.localScale = hairData.GetHair(type).HairItem.transform.localScale;
     }
 
     public void SetHairSuit(SuitType type)
@@ -501,11 +504,12 @@ public class Character : GameUnit
         hair.transform.SetParent(Hair);
         hair.transform.localPosition = suitData.GetSuit(type).HairItem.transform.localPosition;
         hair.transform.localRotation = suitData.GetSuit(type).HairItem.transform.localRotation;
+        hair.transform.localScale = suitData.GetSuit(type).HairItem.transform.localScale;
     }
 
     public void RemoveHair()
     {
-        Hair childCollider = Hair.GetComponentInChildren<Hair>();
+        Hair childCollider = Hair?.GetComponentInChildren<Hair>();
         if (childCollider != null)
         {
             Destroy(childCollider.gameObject);
@@ -518,6 +522,7 @@ public class Character : GameUnit
         supportItem.transform.SetParent(Shield);
         supportItem.transform.localPosition = supportItemData.GetSupportItem(type).SupportItem.transform.localPosition;
         supportItem.transform.localRotation = supportItemData.GetSupportItem(type).SupportItem.transform.localRotation;
+        supportItem.transform.localScale = supportItemData.GetSupportItem(type).SupportItem.transform.localScale;
     }
 
     public void SetSupportItemSuit(SuitType type)
@@ -526,6 +531,7 @@ public class Character : GameUnit
         supportItem.transform.SetParent(Shield);
         supportItem.transform.localPosition = suitData.GetSuit(type).supportItem.transform.localPosition;
         supportItem.transform.localRotation = suitData.GetSuit(type).supportItem.transform.localRotation;
+        supportItem.transform.localScale = suitData.GetSuit(type).supportItem.transform.localScale;
     }
 
     public void RemoveSupportItem()
@@ -543,6 +549,7 @@ public class Character : GameUnit
         tailItem.transform.SetParent(TailHold);
         tailItem.transform.localPosition = suitData.GetSuit(type).TailItem.transform.localPosition;
         tailItem.transform.localRotation = suitData.GetSuit(type).TailItem.transform.localRotation;
+        tailItem.transform.localScale = suitData.GetSuit(type).TailItem.transform.localScale;
     }
         
     public void RemoveTailItem()
@@ -560,6 +567,7 @@ public class Character : GameUnit
         wingItem.transform.SetParent(WingHold);
         wingItem.transform.localPosition = suitData.GetSuit(type).WingItem.transform.localPosition;
         wingItem.transform.localRotation = suitData.GetSuit(type).WingItem.transform.localRotation;
+        wingItem.transform.localScale = suitData.GetSuit(type).WingItem.transform.localScale;
     }
 
     public void RemoveWingItem()

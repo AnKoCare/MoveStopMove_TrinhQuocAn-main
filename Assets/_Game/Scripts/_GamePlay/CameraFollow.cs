@@ -40,6 +40,11 @@ public class CameraFollow : Singleton<CameraFollow>
 
     public void SetUpWhenCollectGift()
     {
-        offset = new Vector3(0f,40f,-40f);
+        offset *= 1.6f;
+    }
+
+    public void SetUpWinGame()
+    {
+        offset /= 2f;
     }
 }

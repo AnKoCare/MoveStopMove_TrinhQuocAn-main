@@ -159,7 +159,8 @@ public enum PoolType
     Gift_1 = 13,
     Gift_2 = 14,
     Gift_3 = 15,
-    Gift_4 = 16
+    Gift_4 = 16,
+    Hit_VFX = 17
 }
 
 

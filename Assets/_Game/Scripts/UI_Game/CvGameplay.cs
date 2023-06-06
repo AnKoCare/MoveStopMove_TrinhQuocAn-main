@@ -16,7 +16,6 @@ public class CvGameplay : UICanvas
         GameManager.Ins.ChangeState(GameState.Gameplay);
         CameraFollow.Ins.SetupGamePlay();
         SoundController.Ins.GetbackGroundAudio().Pause();
-        //SoundController.Ins.GetinGameAudio().Play();
         if(!UIManager.Ins.GetUI<PauseGame>(UIID.UIPauseGame).buttonOpenSound.gameObject.activeSelf && UIManager.Ins.GetUI<PauseGame>(UIID.UIPauseGame).buttonRemoveSound.gameObject.activeSelf)
         {
             UIManager.Ins.CloseUI(UIID.UIPauseGame);
@@ -25,17 +24,19 @@ public class CvGameplay : UICanvas
         else
         {
             UIManager.Ins.CloseUI(UIID.UIPauseGame);
-            SoundController.Ins.GetinGameAudio().Pause();
+            SoundController.Ins.GetinGameAudio().Stop();
         }
     }
 
     public override void SetDeActive()
     {
-        SoundController.Ins.GetinGameAudio().Pause();
+        SoundController.Ins.GetinGameAudio().Stop();
     }
 
     public void ButtonSettingGame()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
+        if(LevelManager.Ins.player.isDead) return;
         UIManager.Ins.OpenUI(UIID.UIPauseGame);
     }
 

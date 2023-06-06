@@ -18,7 +18,7 @@ MonoBehaviour:
     Gold: 5
     Description: 100% Gold
     Price: 500
-    IsUnlocked: 1
+    IsUnlocked: 0
     IsEquipped: 0
   - SupportItem: {fileID: 992482753871386545, guid: a7a39de27db934d0a9e451ced0a478c0, type: 3}
     NameSupportItem: Captain Shield
@@ -26,7 +26,7 @@ MonoBehaviour:
     Description: 200% Gold
     Price: 1000
     IsUnlocked: 1
-    IsEquipped: 0
+    IsEquipped: 1
   - SupportItem: {fileID: 4554734507825300017, guid: ad0c00bc7954547dcb0976d8457dd200, type: 3}
     NameSupportItem: 
     Gold: 0

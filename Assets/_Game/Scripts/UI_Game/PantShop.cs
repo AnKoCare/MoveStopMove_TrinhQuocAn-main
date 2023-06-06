@@ -71,6 +71,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectBatman()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -87,6 +88,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectChambi()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -103,6 +105,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectComy()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -119,6 +122,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectDabao()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -135,6 +139,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectOnion()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -151,6 +156,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectPokemon()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -167,6 +173,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectRainbow()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -183,6 +190,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectSkull()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -199,6 +207,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelectVantim()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -215,12 +224,14 @@ public class PantShop : UICanvas
 
     public void ButtonExitShop()
     {   
+        SoundController.Ins.GetbuttonAudio().Play();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.MainMenu);
     }
 
     public void ButtonBuyPant()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.coin >= pantsData.GetPants((PantsType)currentIndex).Price)
         {
             LevelManager.Ins.player.BuyItem((int)pantsData.GetPants((PantsType)currentIndex).Price);
@@ -231,6 +242,7 @@ public class PantShop : UICanvas
 
     public void ButtonSelection()
     {  
+        SoundController.Ins.GetbuttonAudio().Play();
         if(!pantsData.GetPants((PantsType)currentIndex).IsEquipped)
         {
             LevelManager.Ins.player.RemovePant();
@@ -261,6 +273,7 @@ public class PantShop : UICanvas
 
     public void ButtonHatShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemovePant();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.HatShop);
@@ -268,6 +281,7 @@ public class PantShop : UICanvas
 
     public void ButtonShieldShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemovePant();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.SupportItemShop);
@@ -275,6 +289,7 @@ public class PantShop : UICanvas
 
     public void ButtonSuitShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemovePant();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.SuitShop);

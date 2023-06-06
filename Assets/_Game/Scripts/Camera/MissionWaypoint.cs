@@ -72,7 +72,8 @@ public class MissionWaypoint : GameUnit
 
     public override void OnDespawn()
     {
-
+        TF.position = Vector3.zero;
+        imgDir.transform.position = Vector3.zero;
     }
 
     public override void OnInit()
@@ -83,6 +84,8 @@ public class MissionWaypoint : GameUnit
     public void OnInit(Character character)
     {
         owner = character;
+        imgDir.transform.position = Vector3.zero;
+        offset += Vector3.up * (owner.LevelCharacter * 0.5f);
     }
 
     public void Setoffset(float size)

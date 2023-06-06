@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolType: 14
+  rb: {fileID: 7528753633794483898}
 --- !u!65 &3790075391936057672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,7 +108,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125480567556732}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.6641042, y: 0.7068162, z: 0.66562384}

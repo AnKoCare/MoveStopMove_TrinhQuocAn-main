@@ -71,6 +71,7 @@ public class SuitShop : UICanvas
 
     public void ButtonSelectDevil()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         currentIndex = 0;
         SetUpItemSuit((SuitType)currentIndex);
@@ -78,6 +79,7 @@ public class SuitShop : UICanvas
 
     public void ButtonSelectAngle()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         currentIndex = 1;
         SetUpItemSuit((SuitType)currentIndex);
@@ -85,6 +87,7 @@ public class SuitShop : UICanvas
 
     public void ButtonSelectWitch()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         currentIndex = 2;
         SetUpItemSuit((SuitType)currentIndex);
@@ -92,6 +95,7 @@ public class SuitShop : UICanvas
 
     public void ButtonExitShop()
     {   
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.MainMenu);
@@ -99,6 +103,7 @@ public class SuitShop : UICanvas
 
     public void ButtonSelection()
     {  
+        SoundController.Ins.GetbuttonAudio().Play();
         if(!suitData.GetSuit((SuitType)currentIndex).IsEquipped)
         {
             UnEquipItem();
@@ -126,6 +131,7 @@ public class SuitShop : UICanvas
 
     public void ButtonBuySuit()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.coin >= suitData.GetSuit((SuitType)currentIndex).Price)
         {
             LevelManager.Ins.player.BuyItem((int)suitData.GetSuit((SuitType)currentIndex).Price);
@@ -136,6 +142,7 @@ public class SuitShop : UICanvas
 
     public void ButtonPantShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.PantShop);
@@ -143,6 +150,7 @@ public class SuitShop : UICanvas
 
     public void ButtonShieldShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.SupportItemShop);
@@ -150,6 +158,7 @@ public class SuitShop : UICanvas
 
     public void ButtonHatShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         RemoveItemSuit();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.HatShop);
@@ -157,7 +166,7 @@ public class SuitShop : UICanvas
 
     public void ButtonSuitShop()
     {
-
+        SoundController.Ins.GetbuttonAudio().Play();
     }
 
     public void RemoveItemSuit()

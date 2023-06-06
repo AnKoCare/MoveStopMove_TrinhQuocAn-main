@@ -10,6 +10,7 @@ public class PlayerController : Character
     [SerializeField] private Rigidbody rigibody;
     [SerializeField] private bool EnableMove = true;
     public Vector3 offsetCameraBeforeCollectGift;
+    public Vector3 offsetCameraBeforeDead;
     public bool AttackEnd = true;
 
     public int numberKillBot = 0;
@@ -90,7 +91,7 @@ public class PlayerController : Character
 
     private void Update() 
     {
-        if(character.currentState != null)
+        if(character.currentState != null && !GameManager.Ins.IsState(GameState.Pause))
         {
             character.currentState.OnExecute(this);
         }  
@@ -135,13 +136,27 @@ public class PlayerController : Character
         LevelCharacter = 1;
         sizeCharacter = 1;
         sizeRing = 1;
+        numberKillBot = 0;
         base.OnInit();
         EnableMove = true;
         AttackEnd = true;
+        TF.position = Vector3.up * 1.5f;
+        TF.rotation = Quaternion.Euler(0f,0f,0f);
+        offsetCameraBeforeCollectGift = Vector3.zero;
+        offsetCameraBeforeDead = Vector3.zero;
     }
 
     public void OnInitRevive()
     {
+        if(isUlti)
+        {
+            attackRange.transform.localScale = sizeRingBeforeCollectGift;
+            CameraFollow.Ins.offset = offsetCameraBeforeCollectGift;
+        }
+        else
+        {
+            CameraFollow.Ins.offset = offsetCameraBeforeDead;
+        }
         currentAnimName = "Idle";
         isIdle = false;
         isPatrol = false;
@@ -152,14 +167,15 @@ public class PlayerController : Character
         isUlti = false;
         timerAttack = 0f;
         characterList.Clear();
-        SetUpWeaponAndHairIndicator();
-        SetUpPantIndicator();
-        SetUpSupportItemIndicator();
         SetMissionWayPoint();
         SetColorMissionWayPoint();
         boxCollider.enabled = true;
         EnableMove = true;
         AttackEnd = true;
+        LevelManager.Ins.maxBot++;
+        LevelManager.Ins.currentBot++;
+        offsetCameraBeforeCollectGift = Vector3.zero;
+        offsetCameraBeforeDead = Vector3.zero;
     }
 
     //IDLE
@@ -295,6 +311,7 @@ public class PlayerController : Character
         base.OnDeadEnter();
         rankPlayer = LevelManager.Ins.maxBot;
         Invoke("OpenUIWhenDead", 2f);
+        if(!isUlti) offsetCameraBeforeDead = CameraFollow.Ins.offset;
     }
 
 

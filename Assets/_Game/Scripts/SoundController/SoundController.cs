@@ -11,28 +11,30 @@ public class SoundController : Singleton<SoundController>
     public List<AudioSource> loseAudio;
     public List<AudioSource> backGroundAudio;
     public List<AudioSource> inGameAudio;
+    public List<AudioSource> winGameAudio;
+    public List<AudioSource> buttonAudio;
 
     public AudioSource GetthrowWeaponAudio()
     {
-        int randomType = Random.Range(0,4);
+        int randomType = Random.Range(0,throwWeaponAudio.Count);
         return throwWeaponAudio[randomType];
     }
 
     public AudioSource GetdeadCharacterAudio()
     {
-        int randomType = Random.Range(0,3);
+        int randomType = Random.Range(0,deadCharacterAudio.Count);
         return deadCharacterAudio[randomType];
     }
 
     public AudioSource GetscaleUpAudio()
     {
-        int randomType = Random.Range(0,6);
+        int randomType = Random.Range(0,scaleUpCharacterAudio.Count);
         return scaleUpCharacterAudio[randomType];
     }
 
     public AudioSource GetweaponCollisionAudio()
     {
-        int randomType = Random.Range(0,10);
+        int randomType = Random.Range(0,weaponCollisionAudio.Count);
         return weaponCollisionAudio[randomType];
     }
 
@@ -49,6 +51,16 @@ public class SoundController : Singleton<SoundController>
     public AudioSource GetinGameAudio()
     {
         return inGameAudio[0];
+    }
+
+    public AudioSource GetwinGameAudio()
+    {
+        return winGameAudio[0];
+    }
+
+    public AudioSource GetbuttonAudio()
+    {
+        return buttonAudio[0];
     }
 }
 
@@ -108,4 +120,14 @@ public enum backGroundType
 public enum inGameType
 {
     inGame_0 = 0
+}
+
+public enum winGameType
+{
+    winGame_0 = 0
+}
+
+public enum buttonType
+{
+    button_0 = 0
 }

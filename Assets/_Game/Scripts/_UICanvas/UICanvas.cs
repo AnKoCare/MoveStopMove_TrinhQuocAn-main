@@ -45,7 +45,7 @@ public class UICanvas : MonoBehaviour
 
     private void OnDisable() 
     {
-        SetDeActive();
+
     }
     //Setup canvas to avoid flash UI
     //set up mac dinh cho UI de tranh truong hop bi nhay' hinh
@@ -102,6 +102,7 @@ public class UICanvas : MonoBehaviour
     public virtual void CloseDirectly()
     {
         //UIManager.Ins.RemoveBackUI(this);
+        SetDeActive();
         gameObject.SetActive(false);
         if (IsDestroyOnClose)
         {
@@ -115,6 +116,7 @@ public class UICanvas : MonoBehaviour
     public virtual void Close(float delayTime)
     {
         Invoke(nameof(CloseDirectly), delayTime);
+        SetDeActive();
     }
 
 }
@@ -132,5 +134,6 @@ public enum UIID
     UIRevive = 8,
     UIGameOver = 9,
     UIPauseGame = 10,
-    UINotice = 11
+    UINotice = 11,
+    UIWinGame = 12
 }

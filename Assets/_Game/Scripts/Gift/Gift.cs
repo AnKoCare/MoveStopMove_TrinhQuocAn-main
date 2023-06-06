@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gift : GameUnit
 {
-
+    [SerializeField] private Rigidbody rb;
     
     public override void OnInit()
     {
@@ -14,5 +14,13 @@ public class Gift : GameUnit
     public override void OnDespawn()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.CompareTag("Ground"))
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+        }    
     }
 }

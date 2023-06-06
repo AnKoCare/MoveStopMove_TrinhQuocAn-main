@@ -81,6 +81,7 @@ public class SkinShop : UICanvas
 
     public void ButtonSelectArrow()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -96,6 +97,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectCowboy()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -111,6 +113,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectCrown()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -126,6 +129,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectEar()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -140,6 +144,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectHat()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -155,6 +160,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectHatCap()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -170,6 +176,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectHatYeallow()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -185,6 +192,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectHeadPhone()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -200,6 +208,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectHorn()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -215,6 +224,7 @@ public class SkinShop : UICanvas
     }
     public void ButtonSelectRau()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.suitType != SuitType.EmptySuit)
         {
             LevelManager.Ins.player.RemoveCharacterColor();
@@ -231,11 +241,13 @@ public class SkinShop : UICanvas
     
     public void ButtonExitShop()
     {   
+        SoundController.Ins.GetbuttonAudio().Play();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.MainMenu);
     }
     public void ButtonSelection()
     {  
+        SoundController.Ins.GetbuttonAudio().Play();
         if(!hairData.GetHair((HairsType)currentIndex).IsEquipped)
         {
             LevelManager.Ins.player.RemoveHair();
@@ -267,6 +279,7 @@ public class SkinShop : UICanvas
 
     public void ButtonBuyHat()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.coin >= hairData.GetHair((HairsType)currentIndex).Price)
         {
             LevelManager.Ins.player.BuyItem((int)hairData.GetHair((HairsType)currentIndex).Price);
@@ -277,6 +290,7 @@ public class SkinShop : UICanvas
 
     public void ButtonPantShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemoveHair();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.PantShop);
@@ -284,6 +298,7 @@ public class SkinShop : UICanvas
 
     public void ButtonShieldShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemoveHair();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.SupportItemShop);
@@ -291,6 +306,7 @@ public class SkinShop : UICanvas
 
     public void ButtonSuitShop()
     {
+        SoundController.Ins.GetbuttonAudio().Play();
         //LevelManager.Ins.player.RemoveHair();
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.SuitShop);
