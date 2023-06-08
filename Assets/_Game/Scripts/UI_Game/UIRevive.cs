@@ -18,6 +18,7 @@ public class UIRevive : UICanvas
     public void ButtonReviveAsCoin()
     {
         SoundController.Ins.GetbuttonAudio().Play();
+        if(LevelManager.Ins.player.coin < 150) return;
         UIManager.Ins.CloseAll();
         UIManager.Ins.OpenUI(UIID.Gameplay);
         LevelManager.Ins.RevivePlayer();

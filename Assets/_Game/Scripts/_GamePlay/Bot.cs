@@ -63,6 +63,7 @@ public class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
+        moveSpeed -= 4f;
         navMeshAgent.speed = moveSpeed;
         ChangeState(new PatrolState());
     }

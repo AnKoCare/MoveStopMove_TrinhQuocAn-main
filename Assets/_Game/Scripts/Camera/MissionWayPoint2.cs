@@ -66,6 +66,7 @@ public class MissionWayPoint2 : GameUnit
     {
         owner = character;
         imgPoint.transform.position = Vector3.zero;
+        offset = Vector3.up * 3f;
         offset += Vector3.up * (owner.LevelCharacter * 0.5f);
     }
     public void Setoffset(float size)

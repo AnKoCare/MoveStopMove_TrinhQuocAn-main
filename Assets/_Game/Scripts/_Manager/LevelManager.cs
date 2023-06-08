@@ -258,6 +258,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void ReloadGame()
     {
+        
         usedNames.Clear();
         
         SimplePool.CollectAll();

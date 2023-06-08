@@ -591,7 +591,7 @@ public class Character : GameUnit
 
     public void SetUpPantIndicator()
     {
-        moveSpeed = 5f + pantsData.GetPants(pantsType).Speed;
+        moveSpeed = 7f + pantsData.GetPants(pantsType).Speed;
     }
 
     public void SetUpSupportItemIndicator()

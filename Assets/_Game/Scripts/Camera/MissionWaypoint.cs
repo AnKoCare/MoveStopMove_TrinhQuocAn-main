@@ -43,7 +43,7 @@ public class MissionWaypoint : GameUnit
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = 0;
         imgDir.transform.position = Vector3.Lerp(pos, imgDir.transform.position, 0.5f);
-        if(pos.x == 50 || pos.x == 1030 || pos.y == 50 || pos.y == 1870)
+        if(pos.x == minX || pos.x == maxX || pos.y == minY || pos.y == maxY)
         {
             imgDir.enabled = true;
         }
@@ -74,6 +74,7 @@ public class MissionWaypoint : GameUnit
     {
         TF.position = Vector3.zero;
         imgDir.transform.position = Vector3.zero;
+        offset = Vector3.up * 3f;
     }
 
     public override void OnInit()
@@ -85,6 +86,7 @@ public class MissionWaypoint : GameUnit
     {
         owner = character;
         imgDir.transform.position = Vector3.zero;
+        offset = Vector3.up * 3f;
         offset += Vector3.up * (owner.LevelCharacter * 0.5f);
     }
 
