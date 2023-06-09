@@ -60,8 +60,8 @@ public class Weapon : GameUnit
         canScale = false;
         if(Owner.isUlti) canScale = true;
         boxWeapon.enabled = true;
-        TF.position = Owner.ThrowPoint.transform.position;
-        TF.rotation = Owner.ThrowPoint.transform.rotation;
+        TF.position = Owner.ThrowPoint.TF.position;
+        TF.rotation = Owner.ThrowPoint.TF.rotation;
         SizeUp(Owner.sizeCharacter);
     }
 
@@ -69,7 +69,7 @@ public class Weapon : GameUnit
     {
         if(canScale)
         {
-            Owner.attackRange.transform.localScale = Owner.sizeRingBeforeCollectGift;
+            Owner.attackRange.TF.localScale = Owner.sizeRingBeforeCollectGift;
             if(Owner == LevelManager.Ins.player)
             {
                 CameraFollow.Ins.offset = LevelManager.Ins.player.offsetCameraBeforeCollectGift;

@@ -133,8 +133,8 @@ public class LevelManager : Singleton<LevelManager>
             Bot bots = SimplePool.Spawn<Bot>(PoolType.Bot);
             if(navPos != Vector3.zero)
             {
-                bots.transform.position = navPos;
-                bots.navMeshAgent.SetDestination(bots.transform.position);
+                bots.TF.position = navPos;
+                bots.navMeshAgent.SetDestination(bots.TF.position);
             }
             bots.sizeCharacter = player.sizeCharacter;
             bots.sizeRing = player.sizeRing;
@@ -183,8 +183,8 @@ public class LevelManager : Singleton<LevelManager>
             Bot bots = SimplePool.Spawn<Bot>(PoolType.Bot);
             if(navPos != Vector3.zero)
             {
-                bots.transform.position = navPos;
-                bots.navMeshAgent.SetDestination(bots.transform.position);
+                bots.TF.position = navPos;
+                bots.navMeshAgent.SetDestination(bots.TF.position);
             }
             bots.OnInit();
             bots.sizeCharacter = 10;

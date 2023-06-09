@@ -118,9 +118,9 @@ public class PlayerController : Character
 
         if((joystick.Horizontal != 0 || joystick.Vertical != 0) && !isThrow)
         {
-            Vector3 direction = Vector3.RotateTowards(transform.forward, moveVector, rotateSpeed * Time.fixedDeltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(direction);
-            rigibody.velocity = transform.forward * moveSpeed;
+            Vector3 direction = Vector3.RotateTowards(TF.forward, moveVector, rotateSpeed * Time.fixedDeltaTime, 0.0f);
+            TF.rotation = Quaternion.LookRotation(direction);
+            rigibody.velocity = TF.forward * moveSpeed;
             ChangeState(new PatrolState());
         }
         else if(joystick.Horizontal == 0 && joystick.Vertical == 0 && AttackEnd)
@@ -150,7 +150,7 @@ public class PlayerController : Character
     {
         if(isUlti)
         {
-            attackRange.transform.localScale = sizeRingBeforeCollectGift;
+            attackRange.TF.localScale = sizeRingBeforeCollectGift;
             CameraFollow.Ins.offset = offsetCameraBeforeCollectGift;
         }
         else
@@ -232,7 +232,7 @@ public class PlayerController : Character
         if (CountThrow == 0)
         {
             base.OnAttackExecute();
-            ChangeAnim("Attack");
+            ChangeAnim(Constant.ANIM_ATTACK);
             CountThrow++;
         }
 
@@ -274,7 +274,7 @@ public class PlayerController : Character
         if (CountThrow == 0)
         {
             base.OnUltiExecute();
-            ChangeAnim("Ulti");
+            ChangeAnim(Constant.ANIM_ULTI);
             CountThrow++;
         }
 
@@ -347,7 +347,7 @@ public class PlayerController : Character
             SimplePool.Despawn(gift);
             if(isUlti) return;
             isUlti = true;
-            sizeRingBeforeCollectGift = attackRange.transform.localScale;
+            sizeRingBeforeCollectGift = attackRange.TF.localScale;
             SetSizeRingWhenCollectGift(1.8f,sizeRingBeforeCollectGift);
             offsetCameraBeforeCollectGift = CameraFollow.Ins.offset;
             CameraFollow.Ins.SetUpWhenCollectGift();

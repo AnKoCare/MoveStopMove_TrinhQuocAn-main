@@ -13,6 +13,12 @@ public class MissionWayPoint2 : GameUnit
     public Vector3 pos;
     public TextMeshProUGUI level;
     public TextMeshProUGUI nameCharacter;
+    private Transform TFImg;
+
+    private void Awake() 
+    {
+       TFImg = imgPoint.transform; 
+    }
 
     void Update()
     {
@@ -36,7 +42,7 @@ public class MissionWayPoint2 : GameUnit
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = 0;
-        imgPoint.transform.position = Vector3.Lerp(pos, imgPoint.transform.position, 0.9f);
+        TFImg.position = Vector3.Lerp(pos, TFImg.position, 0.9f);
 
         if(pos.x == minX || pos.x == maxX || pos.y == minY || pos.y == maxY)
         {
@@ -53,7 +59,7 @@ public class MissionWayPoint2 : GameUnit
     public override void OnDespawn()
     {
         TF.position = Vector3.zero;
-        imgPoint.transform.position = Vector3.zero;
+        TFImg.position = Vector3.zero;
         offset = Vector3.up * 3f;
     }
 
@@ -65,7 +71,7 @@ public class MissionWayPoint2 : GameUnit
     public void OnInit(Character character)
     {
         owner = character;
-        imgPoint.transform.position = Vector3.zero;
+        TFImg.position = Vector3.zero;
         offset = Vector3.up * 3f;
         offset += Vector3.up * (owner.LevelCharacter * 0.5f);
     }

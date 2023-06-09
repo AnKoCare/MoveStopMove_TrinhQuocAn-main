@@ -1226,11 +1226,11 @@ MonoBehaviour:
   WeaponHold: {fileID: 3612872979251335414}
   supportItemData: {fileID: 11400000, guid: 286c4dce18d824e07a31f55598f2983e, type: 2}
   supportsType: 0
-  suitData: {fileID: 0}
+  suitData: {fileID: 11400000, guid: eb897265811a94034ad6a66886bad698, type: 2}
   suitType: 0
   Shield: {fileID: 4798199689584305299}
-  WingHold: {fileID: 0}
-  TailHold: {fileID: 0}
+  WingHold: {fileID: 218092087592162479}
+  TailHold: {fileID: 4343421906603480606}
   characterList: []
   isIdle: 0
   isPatrol: 0
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   durationAttack: 0
   durationUlti: 0
   WeaponModel: {fileID: 1896220024141992170}
-  ThrowPoint: {fileID: 4942188693890107557}
+  ThrowPoint: {fileID: 8862245409383894415}
   CountThrow: 0
   sizeRingBeforeCollectGift: {x: 0, y: 0, z: 0}
   currentAnimName: Idle
@@ -1572,6 +1572,7 @@ GameObject:
   - component: {fileID: 1586844380851943499}
   - component: {fileID: 8686520171730141442}
   - component: {fileID: 636885655373127184}
+  - component: {fileID: 8862245409383894415}
   m_Layer: 0
   m_Name: Cube
   m_TagString: ThrowPoint
@@ -1657,6 +1658,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8862245409383894415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4942188693890107557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a84ae87baa4404d90d73cef788fa81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5139949646549599569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,7 +1835,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4002583786137597210
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1839,7 +1852,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &2370504534242656439
 BoxCollider:
   m_ObjectHideFlags: 0

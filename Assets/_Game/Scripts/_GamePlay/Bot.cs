@@ -101,7 +101,7 @@ public class Bot : Character
     public override void OnPatrolEnter()
     {
         base.OnPatrolEnter();
-        targetPosition = transform.position;
+        targetPosition = TF.position;
         navMeshAgent.SetDestination(targetPosition);
         timerPatrol = 0;
     }
@@ -114,20 +114,19 @@ public class Bot : Character
             timerPatrol += Time.deltaTime; // cộng thêm thời gian đã trôi qua
             if (timerPatrol >= randomTimeAttack) 
             {
-                navMeshAgent.SetDestination(transform.position);
+                navMeshAgent.SetDestination(TF.position);
                 timerPatrol = 0;
                 ChangeState(new IdleState()); 
                 return;
             }
         }
-        //tf = transform.position;
-        if (Vector3.Distance(targetPosition, transform.position)< 1.2f)
+        if (Vector3.Distance(targetPosition, TF.position)< 1.2f)
         {
-            targetPosition = RandomNavSphere(transform.position, searchRadius, navMeshAgent.areaMask);
+            targetPosition = RandomNavSphere(TF.position, searchRadius, navMeshAgent.areaMask);
 
             while(targetPosition.Equals(Vector3.positiveInfinity))
             {
-                targetPosition = RandomNavSphere(transform.position, searchRadius, navMeshAgent.areaMask);
+                targetPosition = RandomNavSphere(TF.position, searchRadius, navMeshAgent.areaMask);
             }
 
             navMeshAgent.SetDestination(targetPosition);
@@ -153,7 +152,7 @@ public class Bot : Character
         if (CountThrow == 0)
         {
             base.OnAttackExecute();
-            ChangeAnim("Attack");
+            ChangeAnim(Constant.ANIM_ATTACK);
             CountThrow ++;
         }
 
@@ -193,7 +192,7 @@ public class Bot : Character
         if (CountThrow == 0)
         {
             base.OnAttackExecute();
-            ChangeAnim("Ulti");
+            ChangeAnim(Constant.ANIM_ULTI);
             CountThrow ++;
         }
 
@@ -227,7 +226,7 @@ public class Bot : Character
     public override void OnDeadEnter()
     {
         base.OnDeadEnter();
-        navMeshAgent.SetDestination(gameObject.transform.position);
+        navMeshAgent.SetDestination(TF.position);
         
     }
 
@@ -267,7 +266,7 @@ public class Bot : Character
             SimplePool.Despawn(gift);
             if(isUlti) return;
             isUlti = true;
-            sizeRingBeforeCollectGift = attackRange.transform.localScale;
+            sizeRingBeforeCollectGift = attackRange.TF.localScale;
             SetSizeRingWhenCollectGift(2f,sizeRingBeforeCollectGift);
             
         }    

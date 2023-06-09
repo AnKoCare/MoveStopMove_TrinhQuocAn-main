@@ -45,7 +45,7 @@ public class CvGameplay : UICanvas
         NoticeKiller noticeKiller = SimplePool.Spawn<NoticeKiller>(PoolType.NoticeKiller);
         noticeKiller.nameKiller.text = killer;
         noticeKiller.nameVictim.text = victim;
-        noticeKiller.transform.SetParent(NoticeHold);
+        noticeKiller.TF.SetParent(NoticeHold);
     }
 
     

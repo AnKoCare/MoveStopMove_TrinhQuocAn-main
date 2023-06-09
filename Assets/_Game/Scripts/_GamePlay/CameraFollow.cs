@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class CameraFollow : Singleton<CameraFollow>
 {
-    [SerializeField] private GameObject player;       
+    [SerializeField] private PlayerController player;       
+
+    private Transform tf;
+    public Transform TF
+    {
+        get
+        {
+            tf = tf ?? gameObject.transform;
+            return tf;
+        }
+    }
 
     readonly Vector3 orriginOffset = new Vector3(0,1,-1);
 
@@ -12,25 +22,25 @@ public class CameraFollow : Singleton<CameraFollow>
     
     void LateUpdate () 
     {
-        transform.position = player.transform.position + offset;
+        TF.position = player.TF.position + offset;
     }
 
     public void SetupMainMenu()
     {
         offset = new Vector3(0,4,8);
-        transform.localRotation = Quaternion.Euler(30f,-180f,0);
+        TF.localRotation = Quaternion.Euler(30f,-180f,0);
     }
 
     public void SetupGamePlay()
     {
         offset = new Vector3(0,20,-20);
-        transform.localRotation = Quaternion.Euler(40f,0,0);
+        TF.localRotation = Quaternion.Euler(40f,0,0);
     }
 
     public void SetupSuitShop()
     {
         offset = new Vector3(0,2,10);
-        transform.localRotation = Quaternion.Euler(30f,-180f,0);
+        TF.localRotation = Quaternion.Euler(30f,-180f,0);
     }
 
     public void SetUpWhenKill(float dis)

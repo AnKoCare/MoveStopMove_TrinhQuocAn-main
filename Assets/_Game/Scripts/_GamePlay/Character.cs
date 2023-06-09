@@ -88,7 +88,7 @@ public class Character : GameUnit
     public float durationAttack; // biến lưu thời gian chạy của animation Attack
     public float durationUlti; // biến lưu thời gian chạy của animation Ulti
     public GameObject WeaponModel;
-    public GameObject ThrowPoint;
+    public ThrowPoint ThrowPoint;
     private int pos;
     public int CountThrow = 0;
     public Vector3 sizeRingBeforeCollectGift;
@@ -101,7 +101,6 @@ public class Character : GameUnit
 
     public virtual void Start() 
     {
-        //originRingSize = Vector3.forward * attackRange.transform.localScale.z + Vector3.right * attackRange.transform.localScale.x;
         originRingSize = new Vector3(14f,0.1f,14f);
         OnInit();   
         durationAttack = anim.runtimeAnimatorController.animationClips.FirstOrDefault(clip => clip.name == "Attack")?.length ?? 0;
@@ -148,12 +147,12 @@ public class Character : GameUnit
         missionWaypoint = SimplePool.Spawn<MissionWaypoint>(PoolType.MissionWaypoint);
         missionWaypoint.OnInit(this);
         
-        missionWaypoint.target = this.transform;
+        missionWaypoint.target = this.TF;
 
         missionWayPoint2 = SimplePool.Spawn<MissionWayPoint2>(PoolType.MissionWayPoint2);
         missionWayPoint2.OnInit(this);
         
-        missionWayPoint2.target = this.transform;
+        missionWayPoint2.target = this.TF;
     }
 
     public void SetColorMissionWayPoint()
@@ -183,7 +182,6 @@ public class Character : GameUnit
         ChangeState(new Dead());
     }
     
-    //TODO: set chi so thay vi scale up
     public void SetSizeChar(float size)
     {
         
@@ -193,12 +191,12 @@ public class Character : GameUnit
 
     public void SetSizeRing(float size)
     {
-        attackRange.transform.localScale = originSize * (originRingSize.x * (100+size*20)/100) + Vector3.up * 0.1f;
+        attackRange.TF.localScale = originSize * (originRingSize.x * (100+size*20)/100) + Vector3.up * 0.1f;
     }
 
     public void SetSizeRingWhenCollectGift(float size, Vector3 sizeBeforeWhenCollectGift)
     {
-        attackRange.transform.localScale = Vector3.up * sizeBeforeWhenCollectGift.y + Vector3.right * sizeBeforeWhenCollectGift.x * size + Vector3.forward * sizeBeforeWhenCollectGift.z * size;
+        attackRange.TF.localScale = Vector3.up * sizeBeforeWhenCollectGift.y + Vector3.right * sizeBeforeWhenCollectGift.x * size + Vector3.forward * sizeBeforeWhenCollectGift.z * size;
     }
 
     public void ChangeState(IState<Character> newState)
@@ -243,7 +241,7 @@ public class Character : GameUnit
 
     public virtual void OnIdleExecute()
     {
-        ChangeAnim("Idle");
+        ChangeAnim(Constant.ANIM_IDLE);
     }
 
     public virtual void OnIdleExit()
@@ -260,7 +258,7 @@ public class Character : GameUnit
 
     public virtual void OnPatrolExecute()
     {
-        ChangeAnim("Patrol");
+        ChangeAnim(Constant.ANIM_PATROL);
     }
 
     public virtual void OnPatrolExit()
@@ -297,7 +295,7 @@ public class Character : GameUnit
         {
             Vector3 direction = characterList[pos].TF.position - TF.position;
             Quaternion rotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-            gameObject.transform.rotation = rotation;
+            TF.rotation = rotation;
         }
     }
 
@@ -319,7 +317,7 @@ public class Character : GameUnit
         SimplePool.Despawn(missionWayPoint2);
         onDespawnEvent?.Invoke();
         SoundController.Ins.GetdeadCharacterAudio().Play();
-        ChangeAnim("Dead");
+        ChangeAnim(Constant.ANIM_DEAD);
         Invoke("DespawnObj", 2f);
     }
 
@@ -342,7 +340,7 @@ public class Character : GameUnit
 
     public virtual void OnDance_WinExecute()
     {
-        ChangeAnim("Dance");
+        ChangeAnim(Constant.ANIM_DANCE_WIN);
     }
 
     public virtual void OnDance_WinExit()
@@ -359,7 +357,7 @@ public class Character : GameUnit
 
     public virtual void OnDance_CharSkinExecute()
     {
-        ChangeAnim("Dance_CharSkin");
+        ChangeAnim(Constant.ANIM_DANCE_CHARSKIN);
     }
 
     public virtual void OnDance_CharSkinExit()
@@ -394,7 +392,7 @@ public class Character : GameUnit
         {
             Vector3 direction = characterList[pos].TF.position - TF.position;
             Quaternion rotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-            gameObject.transform.rotation = rotation;
+            TF.rotation = rotation;
         }
     }
 
@@ -405,7 +403,7 @@ public class Character : GameUnit
 
     public float DisChar(Character chars)
     {
-       return Vector3.Distance(gameObject.transform.position ,chars.transform.position); 
+       return Vector3.Distance(TF.position ,chars.TF.position); 
     }
 
     public void DespawnObj()

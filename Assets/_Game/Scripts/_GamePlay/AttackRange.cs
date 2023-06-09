@@ -6,6 +6,16 @@ public class AttackRange : MonoBehaviour
 { 
     public Character Owner;
 
+    private Transform tf;
+    public Transform TF
+    {
+        get
+        {
+            tf = tf ?? gameObject.transform;
+            return tf;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(Constant.TAG_CHARACTER) && !Owner.isDead)

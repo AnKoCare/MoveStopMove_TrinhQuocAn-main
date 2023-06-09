@@ -12,8 +12,14 @@ public class MissionWaypoint : GameUnit
     public Vector3 offset;
     public Vector3 pos;
     public Vector2 originPoint;   // Điểm gốc toạ độ O
+    private Transform TFImg;
 
     // Update is called once per frame
+
+    private void Awake() 
+    {
+        TFImg = imgDir.transform;      
+    }
 
     private void Start() 
     {
@@ -42,7 +48,7 @@ public class MissionWaypoint : GameUnit
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         pos.z = 0;
-        imgDir.transform.position = Vector3.Lerp(pos, imgDir.transform.position, 0.5f);
+        TFImg.position = Vector3.Lerp(pos, TFImg.position, 0.5f);
         if(pos.x == minX || pos.x == maxX || pos.y == minY || pos.y == maxY)
         {
             imgDir.enabled = true;
@@ -73,7 +79,7 @@ public class MissionWaypoint : GameUnit
     public override void OnDespawn()
     {
         TF.position = Vector3.zero;
-        imgDir.transform.position = Vector3.zero;
+        TFImg.position = Vector3.zero;
         offset = Vector3.up * 3f;
     }
 
@@ -85,7 +91,7 @@ public class MissionWaypoint : GameUnit
     public void OnInit(Character character)
     {
         owner = character;
-        imgDir.transform.position = Vector3.zero;
+        TFImg.position = Vector3.zero;
         offset = Vector3.up * 3f;
         offset += Vector3.up * (owner.LevelCharacter * 0.5f);
     }
