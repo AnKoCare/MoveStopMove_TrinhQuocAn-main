@@ -91,8 +91,12 @@ public class PlayerController : Character
 
     private void Update() 
     {
-        if(character.currentState != null && !GameManager.Ins.IsState(GameState.Pause))
+        if(character.currentState != null)
         {
+            if(GameManager.Ins.IsState(GameState.Pause))
+            {
+                ChangeState(new IdleState());
+            }
             character.currentState.OnExecute(this);
         }  
     }

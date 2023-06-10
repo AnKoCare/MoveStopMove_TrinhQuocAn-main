@@ -10,7 +10,6 @@ public class Bot : Character
     public NavMeshAgent navMeshAgent;
     [SerializeField] private Animator animator;
     [SerializeField] private Vector3 targetPosition;
-    //[SerializeField] private Vector3 tf;
     [SerializeField] private Character character;
     private float searchRadius = 10f;
     private float timerPatrol = 0f; // biến đếm thời gian delay tấn công

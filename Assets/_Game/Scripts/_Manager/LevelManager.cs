@@ -11,6 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     public int currentBot;
     public ColorData colorDataManager;
     [SerializeField] private Level currentLevel;
+    private List<Bot> listBot;
     private int levelIndex;
     private LevelData currentData;
     public Level[] levelPrefabs;
@@ -57,6 +58,7 @@ public class LevelManager : Singleton<LevelManager>
     public override void OnInit()
     {
         currentData = DataManager[levelIndex];
+        listBot = new List<Bot>();
 
         maxBot = currentData.CountEnemy;
         currentLevel = Instantiate(Resources.Load<Level>("Level/Ground_" + levelIndex));
@@ -131,6 +133,8 @@ public class LevelManager : Singleton<LevelManager>
             }
 
             Bot bots = SimplePool.Spawn<Bot>(PoolType.Bot);
+            listBot.Add(bots);
+            bots.navMeshAgent.enabled = true;
             if(navPos != Vector3.zero)
             {
                 bots.TF.position = navPos;
@@ -181,6 +185,8 @@ public class LevelManager : Singleton<LevelManager>
             }
 
             Bot bots = SimplePool.Spawn<Bot>(PoolType.Bot);
+            listBot.Add(bots);
+            bots.navMeshAgent.enabled = true;
             if(navPos != Vector3.zero)
             {
                 bots.TF.position = navPos;
@@ -266,7 +272,7 @@ public class LevelManager : Singleton<LevelManager>
         player.OnInit();
         player.gameObject.SetActive(true);
 
-        Destroy(currentLevel);
+        Destroy(currentLevel.gameObject);
         OnInit();
         SpawnBot(currentBot, player.sizeCharacter, player.sizeRing, player.LevelCharacter, player.moveSpeed);
         endGame = false;
@@ -283,5 +289,23 @@ public class LevelManager : Singleton<LevelManager>
         player.OnInitRevive();
         player.gameObject.SetActive(true);
     }
+
+    // public void PauseGame()
+    // {
+    //     for(int i = 0; i < listBot.Count; i++)
+    //     {
+    //         //listBot[i].ChangeState(null);
+    //         listBot[i].navMeshAgent.SetDestination(listBot[i].TF.position);
+    //         //listBot[i].navMeshAgent.enabled = false;
+    //     }
+    // }
+
+    // public void UnPauseGame()
+    // {
+    //     for(int i = 0; i < listBot.Count; i++)
+    //     {
+    //         //listBot[i].ChangeState(new PatrolState());   
+    //     }
+    // }
 
 }

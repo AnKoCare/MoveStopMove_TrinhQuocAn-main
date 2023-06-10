@@ -12,7 +12,9 @@ public class CvGameplay : UICanvas
 
     public override void Setup()
     {
+        
         base.Setup();
+        
         GameManager.Ins.ChangeState(GameState.Gameplay);
         CameraFollow.Ins.SetupGamePlay();
         SoundController.Ins.GetbackGroundAudio().Pause();
@@ -35,8 +37,11 @@ public class CvGameplay : UICanvas
 
     public void ButtonSettingGame()
     {
+        
         SoundController.Ins.GetbuttonAudio().Play();
         if(LevelManager.Ins.player.isDead) return;
+        LevelManager.Ins.player.ChangeState(new IdleState());
+        //LevelManager.Ins.PauseGame();
         UIManager.Ins.OpenUI(UIID.UIPauseGame);
     }
 

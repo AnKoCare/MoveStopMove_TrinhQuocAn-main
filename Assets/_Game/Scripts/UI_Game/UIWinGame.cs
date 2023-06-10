@@ -11,6 +11,7 @@ public class UIWinGame : UICanvas
     public override void Setup()
     {
         GameManager.Ins.ChangeState(GameState.WinGame);
+        LevelManager.Ins.player.boxCollider.enabled = false;
         LevelManager.Ins.player.ChangeState(new Dance_Win());
         CameraFollow.Ins.SetUpWinGame();
         SoundController.Ins.GetwinGameAudio().Play();

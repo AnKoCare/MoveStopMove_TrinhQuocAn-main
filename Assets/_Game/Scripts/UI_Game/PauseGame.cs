@@ -11,6 +11,7 @@ public class PauseGame : UICanvas
 
     public override void Setup()
     {
+        
         GameManager.Ins.ChangeState(GameState.Pause);
     }
 
@@ -23,6 +24,7 @@ public class PauseGame : UICanvas
     {
         SoundController.Ins.GetbuttonAudio().Play();
         GameManager.Ins.ChangeState(GameState.Gameplay);
+        //LevelManager.Ins.UnPauseGame();
         UIManager.Ins.CloseUI(UIID.UIPauseGame);
     }
 
